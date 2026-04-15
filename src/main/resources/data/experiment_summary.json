@@ -1,0 +1,13 @@
+{
+  "experiment_id": "EXP_ANTAMINA_V1",
+  "actividad": "Entrenamiento Autoencoder",
+  "fase": "produccion",
+  "optimal_threshold": 0.00499843015666579,
+  "auc_val": 0.8926136420710796,
+  "auc_test": 0.8926136420710796,
+  "val_precision": 0.869315854158132,
+  "val_recall": 0.7099364335898294,
+  "val_f1": 0.7815837937384899,
+  "val_fpr": 0.011810003331975861,
+  "all_indicators_met": true
+}

@@ -1,0 +1,13 @@
+{
+  "total_records": 30000,
+  "total_features_final": 38,
+  "total_features_original": 40,
+  "features_removed": 0,
+  "missing_values_pct": 0.0,
+  "duplicate_records_pct": 0.0,
+  "normal_records": 27011,
+  "anomaly_records": 2989,
+  "balance_ratio": 0.11065862056199326,
+  "quality_score": 0.85,
+  "is_approved": true
+}

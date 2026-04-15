@@ -1,0 +1,50 @@
+{
+  "experiment_id": "EXP_ANTAMINA_V1",
+  "fase": "produccion",
+  "actividad": "Entrenamiento y evaluaci\u00f3n completa",
+  "model_config": {
+    "architecture": [
+      64,
+      32,
+      16,
+      32,
+      64,
+      38
+    ],
+    "activation": "relu",
+    "optimizer": "Adam",
+    "loss": "mse"
+  },
+  "dataset_info": {
+    "total_records": 30000,
+    "total_features": 38,
+    "normal_records": 27011,
+    "anomaly_records": 2989,
+    "split": "70/15/15"
+  },
+  "performance_metrics": {
+    "accuracy": 0.9604666666666667,
+    "precision": 0.869315854158132,
+    "recall": 0.7099364335898294,
+    "f1_score": 0.7815837937384899,
+    "auc_roc": 0.8926136420710796
+  },
+  "confusion_matrix": {
+    "tn": 26692,
+    "fp": 319,
+    "fn": 867,
+    "tp": 2122
+  },
+  "optimal_threshold": 0.00499843015666579,
+  "threshold_strategy": "percentile_99",
+  "thesis_indicators": {
+    "accuracy_ok": true,
+    "f1_ok": true,
+    "auc_ok": true,
+    "fpr_ok": true
+  },
+  "thesis_validation": {
+    "cumple_hipotesis": true,
+    "notas": "Modelo supera m\u00e9tricas m\u00ednimas para tesis"
+  }
+}

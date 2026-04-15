@@ -1,0 +1,34 @@
+{
+  "model_name": "Autoencoder_Antamina_v1",
+  "status": "completed",
+  "architecture": {
+    "encoder": [
+      64,
+      32,
+      16
+    ],
+    "decoder": [
+      32,
+      64,
+      38
+    ],
+    "activation": "relu",
+    "output_activation": "sigmoid"
+  },
+  "hyperparameters": {
+    "epochs": 48,
+    "batch_size": 32,
+    "optimizer": "adam",
+    "loss": "mse"
+  },
+  "dataset_info": {
+    "total_records": 30000,
+    "total_features": 38,
+    "normal_records": 22959,
+    "anomaly_records": 2989
+  },
+  "threshold": 0.00499843015666579,
+  "threshold_method": "percentile_99",
+  "threshold_percentile": 99,
+  "training_duration_seconds": 0
+}

@@ -1,0 +1,31 @@
+{
+  "experiment_id": "EXP_ANTAMINA_V1",
+  "actividad": "An\u00e1lisis de errores y threshold",
+  "fase": "evaluacion",
+  "error_statistics": {
+    "mean_normal": 0.001806617372035932,
+    "std_normal": 0.0009414584480704369,
+    "mean_anomaly": 0.025948067251017604,
+    "std_anomaly": 0.03821336547044427,
+    "threshold": 0.00499843015666579
+  },
+  "false_positives_analysis": {
+    "total_fp": 319,
+    "fpr": 0.011810003331975861,
+    "impacto": "Bajo \u2014 solo 1.2% de falsa alarma"
+  },
+  "false_negatives_analysis": {
+    "total_fn": 867,
+    "fnr": 0.2900635664101706,
+    "impacto": "Medio \u2014 ataques sigilosos no detectados",
+    "tipos_principales": [
+      "Ransomware_Reconocimiento",
+      "PLC_Injection"
+    ]
+  },
+  "threshold_sensitivity": {
+    "threshold_actual": 0.00499843015666579,
+    "threshold_estricto": 0.0029054362991114704,
+    "threshold_relajado": 0.00499843015666579
+  }
+}

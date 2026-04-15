@@ -1,0 +1,122 @@
+[
+  {
+    "attack_type": "Phishing",
+    "total_samples": 349,
+    "detected_correctly": 7,
+    "false_negatives": 342,
+    "false_positives": 0,
+    "detection_rate": 0.02005730659025788,
+    "avg_reconstruction_error": 0.0021880681902854966,
+    "min_reconstruction_error": 0.000333085969308801,
+    "max_reconstruction_error": 0.0061444667286954515,
+    "std_reconstruction_error": 0.0010477588072770384
+  },
+  {
+    "attack_type": "VPN_Unauthorized",
+    "total_samples": 310,
+    "detected_correctly": 310,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "detection_rate": 1.0,
+    "avg_reconstruction_error": 0.045450553183254826,
+    "min_reconstruction_error": 0.02752602976833019,
+    "max_reconstruction_error": 0.11479510202603146,
+    "std_reconstruction_error": 0.015740280369746944
+  },
+  {
+    "attack_type": "DDoS",
+    "total_samples": 339,
+    "detected_correctly": 339,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "detection_rate": 1.0,
+    "avg_reconstruction_error": 0.08139578987728116,
+    "min_reconstruction_error": 0.016257541714766517,
+    "max_reconstruction_error": 0.18011012198574497,
+    "std_reconstruction_error": 0.04093116055726628
+  },
+  {
+    "attack_type": "BruteForce",
+    "total_samples": 324,
+    "detected_correctly": 317,
+    "false_negatives": 7,
+    "false_positives": 0,
+    "detection_rate": 0.9783950617283951,
+    "avg_reconstruction_error": 0.013269016213115254,
+    "min_reconstruction_error": 0.0036824200890514416,
+    "max_reconstruction_error": 0.025548445017153136,
+    "std_reconstruction_error": 0.00570149052509273
+  },
+  {
+    "attack_type": "PortScanning",
+    "total_samples": 331,
+    "detected_correctly": 302,
+    "false_negatives": 29,
+    "false_positives": 0,
+    "detection_rate": 0.9123867069486404,
+    "avg_reconstruction_error": 0.01829648353262276,
+    "min_reconstruction_error": 0.0021454135669052355,
+    "max_reconstruction_error": 0.06222825106384446,
+    "std_reconstruction_error": 0.011717058261902792
+  },
+  {
+    "attack_type": "Malware",
+    "total_samples": 338,
+    "detected_correctly": 315,
+    "false_negatives": 23,
+    "false_positives": 0,
+    "detection_rate": 0.9319526627218935,
+    "avg_reconstruction_error": 0.011381009105012052,
+    "min_reconstruction_error": 0.003367993870703003,
+    "max_reconstruction_error": 0.025833330180213974,
+    "std_reconstruction_error": 0.005098975170288141
+  },
+  {
+    "attack_type": "Exfiltracion",
+    "total_samples": 322,
+    "detected_correctly": 290,
+    "false_negatives": 32,
+    "false_positives": 0,
+    "detection_rate": 0.9006211180124224,
+    "avg_reconstruction_error": 0.007534614001678048,
+    "min_reconstruction_error": 0.0031784518101428184,
+    "max_reconstruction_error": 0.013302962866312676,
+    "std_reconstruction_error": 0.002011188647127029
+  },
+  {
+    "attack_type": "PLC_Injection",
+    "total_samples": 350,
+    "detected_correctly": 8,
+    "false_negatives": 342,
+    "false_positives": 0,
+    "detection_rate": 0.022857142857142857,
+    "avg_reconstruction_error": 0.0019048480618542687,
+    "min_reconstruction_error": 0.00034873873857269483,
+    "max_reconstruction_error": 0.010045799378864665,
+    "std_reconstruction_error": 0.0011213308406781996
+  },
+  {
+    "attack_type": "Ransomware_Cifrado",
+    "total_samples": 155,
+    "detected_correctly": 155,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "detection_rate": 1.0,
+    "avg_reconstruction_error": 0.13710709590856002,
+    "min_reconstruction_error": 0.06652150765306894,
+    "max_reconstruction_error": 0.2550613647972934,
+    "std_reconstruction_error": 0.04077251096086489
+  },
+  {
+    "attack_type": "Ransomware_Reconocimiento",
+    "total_samples": 171,
+    "detected_correctly": 79,
+    "false_negatives": 92,
+    "false_positives": 0,
+    "detection_rate": 0.4619883040935672,
+    "avg_reconstruction_error": 0.00535107187622891,
+    "min_reconstruction_error": 0.001277998559744366,
+    "max_reconstruction_error": 0.03020288992035529,
+    "std_reconstruction_error": 0.003695795771476335
+  }
+]

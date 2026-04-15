@@ -1,0 +1,192 @@
+[
+  {
+    "feature_name": "zona",
+    "mean_shap_value": 0.018560966314876318,
+    "importance_rank": 1
+  },
+  {
+    "feature_name": "metodo_auth",
+    "mean_shap_value": 0.01496767311498164,
+    "importance_rank": 2
+  },
+  {
+    "feature_name": "es_fin_de_semana",
+    "mean_shap_value": 0.01406019821834786,
+    "importance_rank": 3
+  },
+  {
+    "feature_name": "dia_semana",
+    "mean_shap_value": 0.011655946061295724,
+    "importance_rank": 4
+  },
+  {
+    "feature_name": "protocolo",
+    "mean_shap_value": 0.010649575221728677,
+    "importance_rank": 5
+  },
+  {
+    "feature_name": "puerto",
+    "mean_shap_value": 0.008958509640594402,
+    "importance_rank": 6
+  },
+  {
+    "feature_name": "rol",
+    "mean_shap_value": 0.00788908636437133,
+    "importance_rank": 7
+  },
+  {
+    "feature_name": "turno_activo",
+    "mean_shap_value": 0.007687347764739981,
+    "importance_rank": 8
+  },
+  {
+    "feature_name": "cpu_uso",
+    "mean_shap_value": 0.006777758080561071,
+    "importance_rank": 9
+  },
+  {
+    "feature_name": "hora",
+    "mean_shap_value": 0.00563516100980724,
+    "importance_rank": 10
+  },
+  {
+    "feature_name": "sensor_metrica_3",
+    "mean_shap_value": 0.005370588178057574,
+    "importance_rank": 11
+  },
+  {
+    "feature_name": "sensor_metrica_2",
+    "mean_shap_value": 0.00533225817196858,
+    "importance_rank": 12
+  },
+  {
+    "feature_name": "sensor_metrica_1",
+    "mean_shap_value": 0.004879973334997516,
+    "importance_rank": 13
+  },
+  {
+    "feature_name": "sensor_metrica_5",
+    "mean_shap_value": 0.004495462076806302,
+    "importance_rank": 14
+  },
+  {
+    "feature_name": "sensor_metrica_4",
+    "mean_shap_value": 0.003407854342406088,
+    "importance_rank": 15
+  },
+  {
+    "feature_name": "intentos_login",
+    "mean_shap_value": 0.0030936761386609305,
+    "importance_rank": 16
+  },
+  {
+    "feature_name": "num_conexiones",
+    "mean_shap_value": 0.002201466033882844,
+    "importance_rank": 17
+  },
+  {
+    "feature_name": "bytes_in",
+    "mean_shap_value": 0.0015791255909186302,
+    "importance_rank": 18
+  },
+  {
+    "feature_name": "sensor_metrica_8",
+    "mean_shap_value": 0.0013804601661760343,
+    "importance_rank": 19
+  },
+  {
+    "feature_name": "duracion_conn",
+    "mean_shap_value": 0.0011738608735848382,
+    "importance_rank": 20
+  },
+  {
+    "feature_name": "sensor_metrica_7",
+    "mean_shap_value": 0.0010334331153636688,
+    "importance_rank": 21
+  },
+  {
+    "feature_name": "accesos_ultimo_hora",
+    "mean_shap_value": 0.000848770072242719,
+    "importance_rank": 22
+  },
+  {
+    "feature_name": "sensor_metrica_10",
+    "mean_shap_value": 0.0008071990315827735,
+    "importance_rank": 23
+  },
+  {
+    "feature_name": "sensor_metrica_9",
+    "mean_shap_value": 0.0006425391456776355,
+    "importance_rank": 24
+  },
+  {
+    "feature_name": "sensor_metrica_6",
+    "mean_shap_value": 0.0006292812895720823,
+    "importance_rank": 25
+  },
+  {
+    "feature_name": "ram_uso",
+    "mean_shap_value": 0.0003078244361618431,
+    "importance_rank": 26
+  },
+  {
+    "feature_name": "paquetes_enviados",
+    "mean_shap_value": 0.0002874406781615269,
+    "importance_rank": 27
+  },
+  {
+    "feature_name": "bytes_out",
+    "mean_shap_value": 0.00018014888968401072,
+    "importance_rank": 28
+  },
+  {
+    "feature_name": "sensor_metrica_13",
+    "mean_shap_value": 0.00010877081894952643,
+    "importance_rank": 29
+  },
+  {
+    "feature_name": "sensor_metrica_15",
+    "mean_shap_value": 9.382072232240415e-05,
+    "importance_rank": 30
+  },
+  {
+    "feature_name": "sensor_metrica_14",
+    "mean_shap_value": 7.733135046541951e-05,
+    "importance_rank": 31
+  },
+  {
+    "feature_name": "sensor_metrica_11",
+    "mean_shap_value": 7.075993464419489e-05,
+    "importance_rank": 32
+  },
+  {
+    "feature_name": "sensor_metrica_12",
+    "mean_shap_value": 4.9535988205312576e-05,
+    "importance_rank": 33
+  },
+  {
+    "feature_name": "escrituras_disco",
+    "mean_shap_value": 1.7253211613866115e-05,
+    "importance_rank": 34
+  },
+  {
+    "feature_name": "lat",
+    "mean_shap_value": 8.60693147666579e-06,
+    "importance_rank": 35
+  },
+  {
+    "feature_name": "lon",
+    "mean_shap_value": 6.961164349831897e-06,
+    "importance_rank": 36
+  },
+  {
+    "feature_name": "distancia",
+    "mean_shap_value": 3.0144892325555202e-06,
+    "importance_rank": 37
+  },
+  {
+    "feature_name": "ip_publica_flag",
+    "mean_shap_value": 0.0,
+    "importance_rank": 38
+  }
+]
