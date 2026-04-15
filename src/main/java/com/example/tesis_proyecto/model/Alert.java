@@ -1,13 +1,9 @@
 package com.example.tesis_proyecto.model;
 
 import com.example.tesis_proyecto.dto.AlertSeverity;
-import com.example.tesis_proyecto.dto.AlertSeverityType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
-import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -28,8 +24,8 @@ public class Alert {
     @Column(name = "alert_type", columnDefinition = "TEXT")
     private String alertType;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "severity")
-    @Type(AlertSeverityType.class)
     private AlertSeverity severity;
 
     @Column(name = "status")
