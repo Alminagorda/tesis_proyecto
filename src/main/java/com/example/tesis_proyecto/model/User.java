@@ -23,7 +23,9 @@ public class User {
     @Column(nullable = false)
     private String passwordHash;
 
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "role_name")
+    private Rol role;
 
     private Boolean isActive = true;
 
