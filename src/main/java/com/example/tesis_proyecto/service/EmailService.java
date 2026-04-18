@@ -3,6 +3,7 @@ package com.example.tesis_proyecto.service;
 import com.example.tesis_proyecto.model.Detections;
 import com.example.tesis_proyecto.model.NotificationPreference;
 import com.example.tesis_proyecto.repository.NotificationPreferenceRepository;
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +30,9 @@ public class EmailService {
 
     @Value("${app.mail.from-name}")
     private String fromName;
+
+
+
 
     @Async
     public void notificarAnomaliaDetectada(Detections detection) {
@@ -193,5 +197,46 @@ public class EmailService {
                 timestamp,
                 status
         );
+    }
+
+
+    public void sendOtpEmail(String toEmail, String otp) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+        helper.setFrom(fromEmail);
+        helper.setTo(toEmail);
+        helper.setSubject("🔐 Tu código de verificación de seguridad");
+
+        String htmlContent = String.format("""
+            <html>
+                <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
+                    <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <h2 style="color: #333; text-align: center;">Código de Verificación</h2>
+                        <p style="color: #666; font-size: 16px;">Hola,</p>
+                        <p style="color: #666; font-size: 16px;">Se ha solicitado acceso a tu cuenta. Para continuar, ingresa el siguiente código:</p>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="font-size: 48px; font-weight: bold; color: #007bff; letter-spacing: 10px; font-family: monospace; background-color: #f0f8ff; padding: 20px; border-radius: 5px;">
+                                %s
+                            </div>
+                        </div>
+                        
+                        <p style="color: #999; font-size: 14px; text-align: center;">Este código expira en <strong>10 minutos</strong></p>
+                        
+                        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                        
+                        <p style="color: #999; font-size: 12px;">
+                            Si no iniciaste sesión, por favor ignora este correo.
+                            <br>
+                            Tu seguridad es importante para nosotros. Nunca compartimos tu código con nadie.
+                        </p>
+                    </div>
+                </body>
+            </html>
+            """, otp);
+
+        helper.setText(htmlContent, true);
+        mailSender.send(message);
     }
 }
