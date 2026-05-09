@@ -26,6 +26,7 @@ public class Alert {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "severity", columnDefinition = "alert_severity")
+    @org.hibernate.annotations.ColumnTransformer(write = "?::alert_severity")
     private AlertSeverity severity;
 
     @Column(name = "status")
