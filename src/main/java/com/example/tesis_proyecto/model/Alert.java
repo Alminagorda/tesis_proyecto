@@ -25,7 +25,7 @@ public class Alert {
     private String alertType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "severity")
+    @Column(name = "severity", columnDefinition = "alert_severity")
     private AlertSeverity severity;
 
     @Column(name = "status")
