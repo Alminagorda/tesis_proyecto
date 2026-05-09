@@ -49,7 +49,7 @@ public class ReportService {
         title.setAlignment(Element.ALIGN_CENTER);
         doc.add(title);
 
-        doc.add(new Paragraph("Sistema de Detección de Anomalías — Mina Antamina",
+        doc.add(new Paragraph("Sistema de Detección de Anomalías — Unidad Operativa",
                 normalFont));
         doc.add(new Paragraph("Generado: " + LocalDateTime.now(), normalFont));
         doc.add(new Paragraph(" "));
@@ -155,7 +155,7 @@ public class ReportService {
         title.setAlignment(Element.ALIGN_CENTER);
         doc.add(title);
         doc.add(new Paragraph(
-                "Sistema de Detección de Anomalías — Mina Antamina", normalFont));
+                "Sistema de Detección de Anomalías — Unidad Operativa", normalFont));
         doc.add(new Paragraph("Generado: " + LocalDateTime.now(), normalFont));
         doc.add(new Paragraph(" "));
 
@@ -319,7 +319,7 @@ public class ReportService {
 
         // Agrega metadata extra
         metricas.put("exported_at",   LocalDateTime.now().toString());
-        metricas.put("system",        "Antamina Anomaly Detection");
+        metricas.put("system",        "Anomaly Detection");
         metricas.put("export_format", "JSON v1.0");
 
         return objectMapper
