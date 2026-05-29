@@ -3,10 +3,12 @@ package com.example.tesis_proyecto.service;
 import com.example.tesis_proyecto.model.Detections;
 import com.example.tesis_proyecto.model.NotificationPreference;
 import com.example.tesis_proyecto.repository.NotificationPreferenceRepository;
-import com.resend.Resend;
-import com.resend.services.emails.model.CreateEmailOptions;
+
+import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ import java.util.List;
 @Service
 public class EmailService {
 
-    private final Resend resend;
+    private final JavaMailSender mailSender;
     private final NotificationPreferenceRepository preferenceRepository;
 
     @Value("${app.mail.from}")
@@ -27,11 +29,11 @@ public class EmailService {
     @Value("${app.mail.from-name}")
     private String fromName;
 
-    public EmailService(@Value("${RESEND_API_KEY}") String apiKey,
-                        NotificationPreferenceRepository preferenceRepository) {
-        this.resend = new Resend(apiKey);
+    public EmailService(JavaMailSender mailSender, NotificationPreferenceRepository preferenceRepository) {
+        this.mailSender = mailSender;
         this.preferenceRepository = preferenceRepository;
     }
+
 
     @Async
     public void notificarAnomaliaDetectada(Detections detection) {
@@ -61,25 +63,27 @@ public class EmailService {
 
     private void enviarEmailAlerta(String destinatario, String nombre,
                                    Detections detection) throws Exception {
-        CreateEmailOptions params = CreateEmailOptions.builder()
-                .from(fromName + " <" + fromEmail + ">")
-                .to(destinatario)
-                .subject(asunto(detection))
-                .html(htmlBody(nombre, detection))
-                .build();
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        resend.emails().send(params);
+        helper.setFrom(fromEmail, fromName);
+        helper.setTo(destinatario);
+        helper.setSubject(asunto(detection));
+        helper.setText(htmlBody(nombre, detection), true); // true = es HTML
+
+        mailSender.send(message);
     }
 
     public void sendOtpEmail(String toEmail, String otp) throws Exception {
-        CreateEmailOptions params = CreateEmailOptions.builder()
-                .from(fromName + " <" + fromEmail + ">")
-                .to(toEmail)
-                .subject("🔐 Tu código de verificación de seguridad")
-                .html(otpHtml(otp))
-                .build();
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        resend.emails().send(params);
+        helper.setFrom(fromEmail, fromName);
+        helper.setTo(toEmail);
+        helper.setSubject("🔐 Tu código de verificación de seguridad");
+        helper.setText(otpHtml(otp), true);
+
+        mailSender.send(message);
     }
 
 
