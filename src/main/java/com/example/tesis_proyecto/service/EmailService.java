@@ -4,24 +4,29 @@ import com.example.tesis_proyecto.model.Detections;
 import com.example.tesis_proyecto.model.NotificationPreference;
 import com.example.tesis_proyecto.repository.NotificationPreferenceRepository;
 
-import jakarta.mail.internet.MimeMessage;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.http.*;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import org.springframework.http.HttpHeaders;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
 public class EmailService {
 
-    private final JavaMailSender mailSender;
     private final NotificationPreferenceRepository preferenceRepository;
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @Value("${app.mail.from}")
     private String fromEmail;
@@ -29,11 +34,12 @@ public class EmailService {
     @Value("${app.mail.from-name}")
     private String fromName;
 
-    public EmailService(JavaMailSender mailSender, NotificationPreferenceRepository preferenceRepository) {
-        this.mailSender = mailSender;
+    @Value("${brevo.api.key}")
+    private String brevoApiKey;
+
+    public EmailService(NotificationPreferenceRepository preferenceRepository) {
         this.preferenceRepository = preferenceRepository;
     }
-
 
     @Async
     public void notificarAnomaliaDetectada(Detections detection) {
@@ -52,7 +58,7 @@ public class EmailService {
                 String email = pref.getUser().getEmail();
                 String nombre = pref.getUser().getFullName() != null
                         ? pref.getUser().getFullName() : email;
-                enviarEmailAlerta(email, nombre, detection);
+                enviarEmail(email, nombre, asunto(detection), htmlBody(nombre, detection));
                 log.info("Email enviado a {} — detección {}", email, detection.getId());
             } catch (Exception e) {
                 log.error("Error al enviar email a {}: {}",
@@ -61,30 +67,33 @@ public class EmailService {
         }
     }
 
-    private void enviarEmailAlerta(String destinatario, String nombre,
-                                   Detections detection) throws Exception {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-        helper.setFrom(fromEmail, fromName);
-        helper.setTo(destinatario);
-        helper.setSubject(asunto(detection));
-        helper.setText(htmlBody(nombre, detection), true); // true = es HTML
-
-        mailSender.send(message);
-    }
-
     public void sendOtpEmail(String toEmail, String otp) throws Exception {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-        helper.setFrom(fromEmail, fromName);
-        helper.setTo(toEmail);
-        helper.setSubject("🔐 Tu código de verificación de seguridad");
-        helper.setText(otpHtml(otp), true);
-
-        mailSender.send(message);
+        enviarEmail(toEmail, toEmail, "🔐 Tu código de verificación de seguridad", otpHtml(otp));
     }
+
+    private void enviarEmail(String toEmail, String toName, String subject, String html) throws Exception {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("api-key", brevoApiKey);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String body = mapper.writeValueAsString(Map.of(
+                "sender", Map.of("name", fromName, "email", fromEmail),
+                "to", List.of(Map.of("email", toEmail, "name", toName)),
+                "subject", subject,
+                "htmlContent", html
+        ));
+
+        HttpEntity<String> request = new HttpEntity<>(body, headers);
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                "https://api.brevo.com/v3/smtp/email", request, String.class
+        );
+
+        if (!response.getStatusCode().is2xxSuccessful()) {
+            throw new Exception("Error al enviar email: " + response.getBody());
+        }
+    }
+
 
 
     private String asunto(Detections detection) {
