@@ -420,7 +420,7 @@ public class SimulationService {
     // ============================================================
     public List<Detections> simulateMalwareDetection(String malwareType) {
         List<Detections> results = new ArrayList<>();
-        int samples = 15;
+        int samples = ri(8,20);
 
         String infectedIp = ipInterna();
         String c2Ip = ipExternaConPais()[0];
@@ -519,7 +519,7 @@ public class SimulationService {
         String infectedWs = rndWorkstation();
 
         if ("reconocimiento".equals(fase)) {
-            int samples = 20;
+            int samples = ri(8, 25);
             for (int i = 0; i < samples; i++) {
                 String url = "http://fastapi-ml-39cx.onrender.com/simulate/RANSOMWARE?fase=" + fase;
                 MlResponse mlResp = restTemplate.postForObject(url, null, MlResponse.class);
@@ -580,7 +580,7 @@ public class SimulationService {
             }
 
         } else { // cifrado
-            int samples = 10;
+            int samples = ri(5, 15);
             for (int i = 0; i < samples; i++) {
                 String url = "http://fastapi-ml-39cx.onrender.com/simulate/RANSOMWARE?fase=" + fase;
                 MlResponse mlResp = restTemplate.postForObject(url, null, MlResponse.class);
