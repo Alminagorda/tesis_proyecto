@@ -20,24 +20,20 @@ public class PredictionController {
     // Predice un registro individual
     // ----------------------------------------------------------
     @PostMapping("/predict")
-    public ResponseEntity<Detections> predict(
-            @RequestBody Map<String, Object> request) {
+    public ResponseEntity<?> predict(@RequestBody Map<String, Object> request) {
         try {
-            String username = (String) request
-                    .getOrDefault("username", "unknown");
-            String sourceIp = (String) request
-                    .getOrDefault("sourceIp", "0.0.0.0");
+            String username = (String) request.getOrDefault("username", "unknown");
+            String sourceIp = (String) request.getOrDefault("sourceIp", "0.0.0.0");
 
-            // Quita campos que no son features del modelo
             request.remove("username");
             request.remove("sourceIp");
 
-            Detections result = predictionService
-                    .predict(request, username, sourceIp);
-
+            Detections result = predictionService.predict(request, username, sourceIp);
             return ResponseEntity.ok(result);
+
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage())); // ← ahora sí verás el error
         }
     }
 
